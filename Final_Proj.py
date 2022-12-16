@@ -293,6 +293,7 @@ def page3(df):
 
     col1, col2 = st.columns(2)
     
+    # create checkboxes for user to pick how they want to filter the data
     with col1: 
         st.caption("What filters would you like to use")
         date_checkbox = st.checkbox("Date")
@@ -302,6 +303,7 @@ def page3(df):
         apply_button = st.button("Apply")
 
     
+    # display input widgets if user clicks corresponding checkbox
     with col2:
         if date_checkbox:
             d_from = st.date_input("From Date:")
@@ -326,6 +328,7 @@ def page3(df):
 
     df1 = df.rename(columns={'UNIQUE KEY': 'Number of Accidents'})
 
+    # filter after user clicks apply
     if apply_button:
         # Create dataframe with filter
         if date_checkbox:
@@ -335,14 +338,15 @@ def page3(df):
         if borough_checkbox:
             df1 = df1[df1['BOROUGH'].isin(options)]
 
-    if apply_button:
-        
+        # create tabs
         tab1, tab2, tab3 = st.tabs(["Table", "Bar Chart", "Pie Chart"])
 
+        # data table 
         with tab1: 
             st.header("Data Table")
             st.write(df1)
 
+        # bar graph
         with tab2:
             # write bar graph
             st.header("Crashes by Borough")
@@ -351,30 +355,32 @@ def page3(df):
             with st.expander("See Table"):
                 st.write(bar_graph(df1, table=True))
 
-            with tab3:
-                st.header("Crashes by Borough")
-                pie_chart(df1, options)
+        # pie chart
+        with tab3:
+            st.header("Crashes by Borough")
+            pie_chart(df1, options)
 
-                with st.expander("See Table"):
-                    st.write(pie_chart(df1, options, table=True))
+            with st.expander("See Table"):
+                st.write(pie_chart(df1, options, table=True))
 
 
 def page4(df):
     st.title("Charts")
     st.subheader("See more stats to help you avoid getting hit")
 
-    # write line chart
+    # write line chart by year
     st.header("Crashes by year")
     line_chart(df)
     with st.expander("See Table"):
         st.write(line_chart(df, table=True))
 
-    # write area chart
+    # write line chart by month
     st.header("Crashes by month")
     line_chart(df, x_axis='Month')
     with st.expander("See Table"):
         st.write(line_chart(df, table=True, x_axis='Month'))
 
+    # write bar chart
     st.header("Crashes by time")
     bar_graph(df, 't')
     with st.expander("See Table"):
