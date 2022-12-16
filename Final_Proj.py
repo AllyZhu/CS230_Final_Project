@@ -78,6 +78,7 @@ def area_chart(df):
     # find number of accidents by month
     df1 = df.groupby('month').count()['Number of Accidents']
 
+    # create two columns with the chart and table
     col1, col2 = st.columns(2)
 
     with col1:
@@ -126,7 +127,10 @@ def pie_chart(df, b_list, table=False):
     # find number of accidents by borough
     df1 = df1.groupby('BOROUGH').count()['Number of Accidents']
 
+    # reset index
     df1 = df1.reset_index()
+    
+    # rename columns
     df1.columns = ['Borough', 'Number of Accidents']
 
     if table:
@@ -135,7 +139,7 @@ def pie_chart(df, b_list, table=False):
     fig = px.pie(df1, values='Number of Accidents', names='Borough')
     st.write(fig)
 
-def bar_char(df, type='b', table=False):
+def bar_graph(df, type='b', table=False):
     # rename unique key to number of accidents
     df2 = df.rename(columns={'UNIQUE KEY': 'Number of Accidents'})
 
@@ -164,7 +168,7 @@ def bar_char(df, type='b', table=False):
 
     st.write(fig)
 
-def line_again(df, table=False, x_axis='Year'):
+def line_chart(df, table=False, x_axis='Year'):
 
     df1 = df.rename(columns={'UNIQUE KEY': 'Number of Accidents'})
 
@@ -342,10 +346,10 @@ def page3(df):
         with tab2:
             # write bar graph
             st.header("Crashes by Borough")
-            bar_char(df1, 'b')
+            bar_graph(df1, 'b')
 
             with st.expander("See Table"):
-                st.write(bar_char(df1, table=True))
+                st.write(bar_graph(df1, table=True))
 
             with tab3:
                 st.header("Crashes by Borough")
@@ -361,20 +365,20 @@ def page4(df):
 
     # write line chart
     st.header("Crashes by year")
-    line_again(df)
+    line_chart(df)
     with st.expander("See Table"):
-        st.write(line_again(df, table=True))
+        st.write(line_chart(df, table=True))
 
     # write area chart
     st.header("Crashes by month")
-    line_again(df, x_axis='Month')
+    line_chart(df, x_axis='Month')
     with st.expander("See Table"):
-        st.write(line_again(df, table=True, x_axis='Month'))
+        st.write(line_chart(df, table=True, x_axis='Month'))
 
     st.header("Crashes by time")
-    bar_char(df, 't')
+    bar_graph(df, 't')
     with st.expander("See Table"):
-        st.write(bar_char(df, True, 'TIME'))
+        st.write(bar_graph(df, True, 'TIME'))
 
 
 def main():
