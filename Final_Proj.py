@@ -20,14 +20,14 @@ CSV_WITH_PATH = SOURCE_PATH+CSV_FILE
 
 BANNER = "Statue_of_liberty_banner.jpg"
 
-def read_csv(CSV_FILE):
+def read_csv(file_path: str):
     """
     read csv into dataframe
     :param file_path: file that's read and info is taken from
     :return df: dataframe 
     """
     
-    df = pd.read_csv(CSV_FILE, header=0, usecols=['UNIQUE KEY', 'DATE', 'TIME', 'BOROUGH', 'LATITUDE', 'LONGITUDE',])
+    df = pd.read_csv("nyc_crashes_sample.csv", header=0, usecols=['UNIQUE KEY', 'DATE', 'TIME', 'BOROUGH', 'LATITUDE', 'LONGITUDE',])
 
     # drop records with missing data
     df = df.dropna()
