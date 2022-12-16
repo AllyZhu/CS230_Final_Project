@@ -6,7 +6,6 @@ This program creates a website that finds the easily displays and processes data
 
 import time
 import numpy as np
-import matplotlib.pyplot as plt
 import pandas as pd
 import streamlit as st
 from PIL import Image
