@@ -62,31 +62,6 @@ def collision_prob(df, t, b):
     return round(prob, 2)
 
 
-def area_chart(df):
-    """
-    Draws area chart that shows that amount of crashes in each borough
-    :param df: dataframe
-    :return: prints area chart
-    """
-
-    # make year column
-    df['month'] = pd.DatetimeIndex(df['DATE']).month
-
-    # rename unique key to number of accidents
-    df = df.rename(columns={'UNIQUE KEY': 'Number of Accidents'})
-
-    # find number of accidents by month
-    df1 = df.groupby('month').count()['Number of Accidents']
-
-    # create two columns with the chart and table
-    col1, col2 = st.columns(2)
-
-    with col1:
-        st.write(df1)
-
-    with col2:
-        st.area_chart(df1)
-
 def create_map(df):
     """
     Creates map with locations of crashes
