@@ -197,7 +197,7 @@ def page0(df):
         """
         What's here:
 
-        - **Chance of Vehicle Accident**: Shows chance accident occurs at [time] on [date]
+        - **Chance of Vehicle Accident**: Shows chance accident occurs at [time] on [borough]
         - **Map**: Shows map of accidents based on specifications
         - **Find out More**: Displays table with filters as well as graphs
         - **Charts**: Displays some data about when and where crashes happen the most
