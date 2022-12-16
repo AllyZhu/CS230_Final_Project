@@ -14,7 +14,7 @@ import plotly
 import plotly.express as px
 
 
-SOURCE_PATH = "C:/Users/alyss/OneDrive - Bentley University/CS 230/Final_Project/"
+SOURCE_PATH = ".\\"
 CSV_FILE = "nyc_crashes_sample.csv"
 CSV_WITH_PATH = SOURCE_PATH+CSV_FILE
 
